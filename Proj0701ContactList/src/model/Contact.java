@@ -60,4 +60,10 @@ public class Contact {
 		return displayStr;
 	}
 
+	@Override
+	public String toString() {
+		return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phone=" + phone
+				+ "]";
+	}
+
 }

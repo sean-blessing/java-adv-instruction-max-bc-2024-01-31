@@ -10,15 +10,16 @@ public class ContactListApp {
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Contact List App!");
 		
-//		Contact c1 = new Contact();
-//		c1.setFirstName("George");
-//		c1.setLastName("McFly");
-//		c1.setEmail("george@b2f.com");
-//		c1.setPhone("444-444-4444");
-//		
-//		Contact c2 = new Contact("Marty", "McFly", "marty@b2f.com", "654-333-8769");
-//		
-//		System.out.println(c1.getFirstName());
+		Contact c1 = new Contact();
+		c1.setFirstName("George");
+		c1.setLastName("McFly");
+		c1.setEmail("george@b2f.com");
+		c1.setPhone("444-444-4444");
+		System.out.println(c1);
+		
+		Contact c2 = new Contact("Marty", "McFly", "marty@b2f.com", "654-333-8769");
+		
+		System.out.println(c1.getFirstName());
 		
 		Scanner sc = new Scanner(System.in);
 		String choice = "y";
