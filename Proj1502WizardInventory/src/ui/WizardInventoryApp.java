@@ -25,10 +25,10 @@ public class WizardInventoryApp {
 			// if or switch statement
 			switch (command) {
 				case COMMAND_SHOW:
-					System.out.println("Show all items:");
+					showItems(itemsList);
 					break;
 				case COMMAND_GRAB:
-					System.out.println("Grab an item:");
+					grabItem(itemsList);
 					break;
 				case COMMAND_EDIT:
 					System.out.println("Edit an item:");
@@ -59,5 +59,25 @@ public class WizardInventoryApp {
 		return Console.getString("Command: ");
 	}
 	
+	private static void showItems(List<String> items) {
+		System.out.println("Show all items:");
+		System.out.println("---------------");
+		for (int i = 1; i <= items.size(); i++) {
+			System.out.println(i+". "+items.get(i - 1));
+		}
+	}
 
+	private static void grabItem(List<String> items) {
+		System.out.println("Grab (Add) an item:");
+		System.out.println("---------------");
+		
+		if (items.size() >= 4) {
+			System.out.println("You can't carry any more items. Drop something first.");
+		}
+		else {
+			String itemName = Console.getString("Item name: ");
+			items.add(itemName);
+			System.out.println(itemName + " was added.");
+		}
+	}
 }
