@@ -31,10 +31,10 @@ public class WizardInventoryApp {
 					grabItem(itemsList);
 					break;
 				case COMMAND_EDIT:
-					System.out.println("Edit an item:");
+					editItem(itemsList);
 					break;
 				case COMMAND_DROP:
-					System.out.println("Drop an item:");
+					dropItem(itemsList);
 					break;
 				case COMMAND_EXIT:
 					System.out.println("Exit app:");
@@ -79,5 +79,47 @@ public class WizardInventoryApp {
 			items.add(itemName);
 			System.out.println(itemName + " was added.");
 		}
+	}
+	private static void editItem(List<String> items) {
+		System.out.println("Edit an item:");
+		System.out.println("---------------");
+		
+		int itemNbr = itemExists(items);
+		if (itemNbr != 0) {
+			// edit the item
+			String updatedName = Console.getString("Updated name: ");
+			items.set(itemNbr - 1, updatedName);
+		}
+		else {
+			System.out.println("Error - item doesn't exist.");
+		}
+		
+		System.out.println("Item # "+itemNbr+" was updated.");
+	}
+	
+	private static void dropItem(List<String> items) {
+		System.out.println("Drop an item:");
+		System.out.println("---------------");
+		
+		int itemNbr = itemExists(items);
+		String itemRemoved = "";
+		if (itemNbr != 0) {
+			// delete the item
+			itemRemoved = items.remove(itemNbr-1);
+		}
+		else {
+			System.out.println("Error - item doesn't exist.");
+		}
+		
+		System.out.println(itemRemoved+" was deleted.");
+	}
+	
+	// Prompt the user for the item #
+	// Validate that an item exists in that position
+	private static int itemExists(List<String> items) {
+		int itemNbr = 0;
+		itemNbr = Console.getInt("Enter item #: ", 0, items.size() + 1);
+		return itemNbr;
+
 	}
 }
