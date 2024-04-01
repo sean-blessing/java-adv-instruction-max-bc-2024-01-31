@@ -59,5 +59,50 @@ public class UserDb {
 		User u = new User(id, un, pw, fn, ln, phone, email, rvw, adm);
 		return u;
 	}
+	
+	public static boolean add(User user) {
+		boolean success = false;
+		
+		String sql = "INSERT INTO User (Username, Password, FirstName, " 
+					 + "LastName, Phone, Email, Reviewer, Admin)"
+					 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try (Connection connection = PrsDb.getConnection();
+			 PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setString(1, user.getUsername());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getFirstname());
+			ps.setString(4, user.getLastname());
+			ps.setString(5, user.getPhone());
+			ps.setString(6, user.getEmail());
+			ps.setBoolean(7, user.isReviewer());
+			ps.setBoolean(8, user.isAdmin());
+			ps.executeUpdate();
+			success = true;
+		}
+		catch (SQLException sqle) {
+			System.err.println(sqle);
+		}
+		return success;
+	}
+	
+	// skipping update
+	
+	public static boolean delete(int id) {
+		boolean success = false;
+		String sql = "DELETE FROM USER WHERE Id = ?";
+		
+		try (Connection connection = PrsDb.getConnection();
+			 PreparedStatement ps = connection.prepareStatement(sql)) {
+			ps.setInt(1, id);
+			int rowsAffected = ps.executeUpdate();
+			if (rowsAffected != 0) 
+				success = true;
+		}
+		catch (SQLException sqle) {
+			System.err.println(sqle);
+		}
+		return success;
+	}
 
 }

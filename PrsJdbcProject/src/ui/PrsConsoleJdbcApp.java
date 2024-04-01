@@ -32,6 +32,25 @@ public class PrsConsoleJdbcApp {
 			System.out.println("Error - check logs");
 		}
 		
+		System.out.println("Add a user:");
+		User u = new User(0,"duser", "pwd", "Dummy", "User", "123-456-7890", "duser@test.com", false, true);
+		if (UserDb.add(u)) {
+			System.out.println("Success - user added.");
+		}
+		else {
+			System.out.println("Error adding user.");
+		}
+		
+		// skipping update
+		
+		System.out.println("Delete a user");
+		if (UserDb.delete(6)) {
+			System.out.println("User 6 deleted");
+		}
+		else {
+			System.out.println("Error deleting user.");
+		}
+		
 		System.out.println("bye");
 	}
 
